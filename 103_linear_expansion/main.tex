@@ -13,6 +13,7 @@
 \usepackage{fontspec}   % dla XeLaTeX lub LuaLaTeX
 \setmainfont{Times New Roman} % lub inna czcionka obsługująca Δ
 \usepackage{float}
+\usepackage{tabularx}
 
 \title{Linear Thermal Expansion Experiment}
 \author{Roland Sobczak}
@@ -98,13 +99,15 @@ Steel  & 0.009425 & $1.219 \cdot 10^{-5}$ \\
 
 \subsection*{Measured Length Changes}
 
-% Display only the length differences for all three metals
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{c c c}
-\hline
-\textbf{Copper ΔL [mm]} & \textbf{Brass ΔL [mm]} & \textbf{Steel ΔL [mm]} \\
-\hline
 \csvautotabular[respect all]{measurements.csv}
 \end{tabular}
+}
+\caption{Measured length changes for all three metals.}
+\end{table}
 
 \section{Conclusions}
 
