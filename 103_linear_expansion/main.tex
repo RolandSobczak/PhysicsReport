@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+%\documentclass[a4paper,12pt]{scrartcl}
 
 % Useful packages for physics experiments
 \usepackage[utf8]{inputenc}   % file encoding
@@ -14,6 +15,17 @@
 \setmainfont{Times New Roman} % lub inna czcionka obsługująca Δ
 \usepackage{float}
 \usepackage{tabularx}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{sectsty}
+\usepackage{microtype}
+%\usepackage{lmodern}  % Latin Modern, ładna nowoczesna czcionka
+\allsectionsfont{\sffamily\bfseries} % wszystkie nagłówki pogrubione i bezszeryfowe
+\usepackage{titling}
+\pretitle{\begin{center}\Huge\bfseries}
+\posttitle{\end{center}}
+
+\setlength{\tabcolsep}{12pt} % odstęp między kolumnami
+\renewcommand{\arraystretch}{1.2} % wysokość wierszy
 
 \title{Linear Thermal Expansion Experiment}
 \author{Roland Sobczak}
