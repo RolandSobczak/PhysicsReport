@@ -1,5 +1,4 @@
 \documentclass[a4paper,12pt]{article}
-%\documentclass[a4paper,12pt]{scrartcl}
 
 % Useful packages for physics experiments
 \usepackage[utf8]{inputenc}   % file encoding
@@ -12,28 +11,52 @@
 \usepackage{csvsimple}
 \usepackage{booktabs}
 \usepackage{fontspec}   % dla XeLaTeX lub LuaLaTeX
-\setmainfont{Times New Roman} % lub inna czcionka obsługująca Δ
+\setmainfont{Times New Roman}
 \usepackage{float}
 \usepackage{tabularx}
 \usepackage[a4paper, margin=2.5cm]{geometry}
 \usepackage{sectsty}
 \usepackage{microtype}
-%\usepackage{lmodern}  % Latin Modern, ładna nowoczesna czcionka
-\allsectionsfont{\sffamily\bfseries} % wszystkie nagłówki pogrubione i bezszeryfowe
+\allsectionsfont{\sffamily\bfseries}
 \usepackage{titling}
-\pretitle{\begin{center}\Huge\bfseries}
-\posttitle{\end{center}}
 
-\setlength{\tabcolsep}{12pt} % odstęp między kolumnami
-\renewcommand{\arraystretch}{1.2} % wysokość wierszy
-
-\title{Linear Thermal Expansion Experiment}
-\author{Roland Sobczak}
-\date{\today}
+\setlength{\tabcolsep}{12pt}
+\renewcommand{\arraystretch}{1.2}
 
 \begin{document}
 
-\maketitle
+% ==========================
+% TITLE PAGE
+% ==========================
+% --- Górny nagłówek do lewej ---
+%\begin{flushleft}
+%Automated Control and Robotics – Group 2
+%\end{flushleft}
+%\vspace{-\parskip}
+%\noindent\rule{\textwidth}{0.4pt}
+%\vspace{1cm}
+
+\noindent\textbf{Automated Control and Robotics – Group 2}\\[-0.2em]
+\rule{\textwidth}{0.4pt}
+\vspace{1cm}
+
+% --- Reszta wyśrodkowana ---
+\begin{center}
+{\Huge \textbf{Linear Thermal Expansion Experiment}}\\[1.5cm]
+\end{center}
+
+% --- Dane autora ---
+\begin{flushleft}
+\textbf{Author:} Roland Sobczak\\[0.3em]
+\textbf{Program:} Automated Control and Robotics – Group 2\\[0.3em]
+\textbf{Supervisor:} Dr hab. inż. Przemysław Głowacki\\[0.3em]
+\textbf{Date of experiment:} 13.10.2025\\[0.3em]
+\textbf{Station no:} 103 
+\end{flushleft}
+
+% ==========================
+% DOCUMENT BODY
+% ==========================
 
 \section{Introduction}
 
@@ -132,5 +155,95 @@ Based on the conducted measurements and data analysis, the following conclusions
     \item The linear expansion coefficient allows predicting the rod's length change as a function of temperature, which is important for designing metal structures exposed to temperature fluctuations.
     \item The linear fitting method is appropriate within the range of small temperature changes, where the linear approximation of thermal expansion holds.
 \end{itemize}
+
+
+% -------------------------------
+% Missing sections: L0, regression error, alpha error, final rounded results
+% -------------------------------
+
+\section{Additional measurements: initial lengths}
+
+Initial lengths \(L_0\) of the rods were measured before heating. Enter measured values and estimated uncertainties here:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l c c}
+\toprule
+Metal & $L_0$ [mm] & $\Delta L_0$ [mm] \\
+\midrule
+Copper & \(\,L_{0,\mathrm{Cu}}\,\) & \(\Delta L_{0,\mathrm{Cu}}\) \\
+Brass  & \(\,L_{0,\mathrm{Br}}\,\) & \(\Delta L_{0,\mathrm{Br}}\) \\
+Steel  & \(\,L_{0,\mathrm{St}}\,\) & \(\Delta L_{0,\mathrm{St}}\) \\
+\bottomrule
+\end{tabular}
+\caption{Measured initial lengths and their uncertainties. Replace placeholders with your measured values.}
+\end{table}
+
+\section{Uncertainty of the regression slope \(a\)}
+
+From the linear fit \(\Delta L = a\,T + b\) the slope \(a\) has an uncertainty \(\sigma_a\) (standard error of the slope). If you performed an ordinary least squares fit to points \((T_i,\Delta L_i)\) (with \(n\) points), compute
+\[
+s^2 = \frac{1}{n-2}\sum_{i=1}^n\big(\Delta L_i - aT_i - b\big)^2
+\qquad\text{and}\qquad
+\sigma_a = \frac{s}{\sqrt{\sum_{i=1}^n (T_i-\overline{T})^2}} .
+\]
+W praktyce większość narzędzi regresji (np. \texttt{numpy.polyfit(..., cov=True)}, \texttt{scipy.stats.linregress}, lub wynik regresji z Excela/Origin) zwraca bezpośrednio błąd współczynnika kierunkowego — użyj tej wartości jako \(\Delta a\equiv\sigma_a\).
+
+Wstaw tutaj otrzymane wartości:
+\[
+a_{\mathrm{Cu}} = \,a_{\mathrm{Cu}} \pm \sigma_{a,\mathrm{Cu}},\qquad
+a_{\mathrm{Br}} = \,a_{\mathrm{Br}} \pm \sigma_{a,\mathrm{Br}},\qquad
+a_{\mathrm{St}} = \,a_{\mathrm{St}} \pm \sigma_{a,\mathrm{St}}.
+\]
+
+\section{Uncertainty propagation for \(\alpha\)}
+
+The linear expansion coefficient is
+\[
+\alpha = \frac{a}{L_0}.
+\]
+Using logarithmic differentiation (propagacja błędów dla ilorazu) daje:
+\[
+\frac{\Delta\alpha}{\alpha}
+= \sqrt{\left(\frac{\Delta a}{a}\right)^2 + \left(\frac{\Delta L_0}{L_0}\right)^2 }.
+\]
+Stąd
+\[
+\Delta\alpha = \alpha \cdot
+\sqrt{\left(\frac{\Delta a}{a}\right)^2 + \left(\frac{\Delta L_0}{L_0}\right)^2 } .
+\]
+
+Podstaw dla każdego metalu swoje wartości \(a,\ \Delta a,\ L_0,\ \Delta L_0\) i oblicz \(\alpha\) i \(\Delta\alpha\).
+
+\section{Final results and rounding}
+
+Zgodnie z zaleceniami (logarytmiczna różniczka i właściwe zaokrąglenie): zaokrąglij \(\Delta\alpha\) do \(\;1\) lub \(\;2\) cyfr znaczących, a następnie podaj \(\alpha\) z tą samą precyzją.
+
+Przykładowy sposób prezentacji wyników (zastąp wartości swoimi obliczeniami):
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l c c}
+\toprule
+Metal & $\alpha$ [1/°C] & Uncertainty $\Delta\alpha$ [1/°C] \\
+\midrule
+Copper & \( (1.79 \pm 0.05)\cdot 10^{-5}\) & \(5\cdot10^{-7}\) \\
+Brass  & \( (1.89 \pm 0.06)\cdot 10^{-5}\) & \(6\cdot10^{-7}\) \\
+Steel  & \( (1.22 \pm 0.03)\cdot 10^{-5}\) & \(3\cdot10^{-7}\) \\
+\bottomrule
+\end{tabular}
+\caption{Final values of linear expansion coefficients with uncertainties (rounded).}
+\end{table}
+
+\paragraph{Zasady zaokrąglania:}
+\begin{itemize}
+  \item Zaokrąglij \(\Delta\alpha\) do 1–2 cyfr znaczących (zazwyczaj 1).  
+  \item Podaj \(\alpha\) z tą samą liczbą miejsc znaczących (czyli do tej samej pozycji dziesiętnej).
+  \item Jeśli \(\alpha\) jest w notacji wykładniczej, zaokrąglij mantysę zgodnie z niepewnością.
+\end{itemize}
+
+% -------------------------------
+% Koniec brakujących sekcji
+% -------------------------------
 
 \end{document}
