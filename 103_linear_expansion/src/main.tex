@@ -1,0 +1,45 @@
+\documentclass[a4paper,12pt]{article}
+
+% Useful packages for physics experiments
+\usepackage[utf8]{inputenc}   % file encoding
+\usepackage[T1]{fontenc}      % proper font encoding
+\usepackage[english]{babel}   % document language
+\usepackage{amsmath, amssymb} % mathematics
+\usepackage{graphicx}         % images
+\usepackage{siunitx}          % units
+\usepackage{hyperref}         % PDF links
+\usepackage{csvsimple}
+\usepackage{booktabs}
+\usepackage{fontspec}   % dla XeLaTeX lub LuaLaTeX
+\setmainfont{Times New Roman}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{sectsty}
+\usepackage{microtype}
+\allsectionsfont{\sffamily\bfseries}
+\usepackage{titling}
+
+\setlength{\tabcolsep}{12pt}
+\renewcommand{\arraystretch}{1.2}
+
+\begin{document}
+
+\input{src/title_page.tex}
+
+% ==========================
+% DOCUMENT BODY
+% ==========================
+
+
+\input{src/intro.tex}
+\input{src/procedure.tex}
+\input{src/results.tex}
+\input{src/conclusions.tex}
+\input{src/error.tex}
+
+% -------------------------------
+% Koniec brakujących sekcji
+% -------------------------------
+
+\end{document}
