@@ -1,0 +1,68 @@
+\section{Additional measurements: initial lengths}
+
+Initial lengths \(L_0\) of the rods were measured before heating. Enter measured values and estimated uncertainties here:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l c c}
+\toprule
+Metal & $L_0$ [mm] & $\Delta L_0$ [mm] \\
+\midrule
+Copper & 385.4 & 0.2 \\
+Brass  & 385.2 & 0.2 \\
+Steel  & 385.6 & 0.2 \\
+\bottomrule
+\end{tabular}
+\caption{Measured initial lengths and their uncertainties.}
+\end{table}
+
+\section{Uncertainty of the regression slope \(a\)}
+
+From the linear fit \(\Delta L = a\,T + b\) the slope \(a\) has an uncertainty \(\sigma_a\). Using your regression results:
+
+\[
+a_{\mathrm{Cu}} = 0.013813 \pm 0.000147,\qquad
+a_{\mathrm{Br}} = 0.014608 \pm 0.000136,\qquad
+a_{\mathrm{St}} = 0.009425 \pm 0.000062.
+\]
+
+\section{Uncertainty propagation for \(\alpha\)}
+
+The linear expansion coefficient is
+\[
+\alpha = \frac{a}{L_0}.
+\]
+Using error propagation for a quotient:
+\[
+\frac{\Delta\alpha}{\alpha}
+= \sqrt{\left(\frac{\Delta a}{a}\right)^2 + \left(\frac{\Delta L_0}{L_0}\right)^2 }.
+\]
+Thus:
+\[
+\Delta\alpha = \alpha \cdot
+\sqrt{\left(\frac{\Delta a}{a}\right)^2 + \left(\frac{\Delta L_0}{L_0}\right)^2 } .
+\]
+\vspace{1cm}  % odstęp 1 cm w pionie
+\[
+\begin{aligned}
+\alpha_{\mathrm{Cu}} &= \frac{0.013813}{385.4} \approx 3.588 \cdot 10^{-5}, & \Delta\alpha_{\mathrm{Cu}} &\approx 3.8 \cdot 10^{-7}, \\
+\alpha_{\mathrm{Br}} &= \frac{0.014608}{385.2} \approx 3.794 \cdot 10^{-5}, & \Delta\alpha_{\mathrm{Br}} &\approx 3.5 \cdot 10^{-7}, \\
+\alpha_{\mathrm{St}} &= \frac{0.009425}{385.6} \approx 2.448 \cdot 10^{-5}, & \Delta\alpha_{\mathrm{St}} &\approx 1.6 \cdot 10^{-7}.
+\end{aligned}
+\]
+
+\section{Final results and rounding}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l c c}
+\toprule
+Metal & $\alpha$ [1/°C] & Uncertainty $\Delta\alpha$ [1/°C] \\
+\midrule
+Copper & \( (3.585 \pm 0.04)\cdot 10^{-5}\) & \(4\cdot10^{-7}\) \\
+Brass  & \( (3.794 \pm 0.04)\cdot 10^{-5}\) & \(4\cdot10^{-7}\) \\
+Steel  & \( (2.444 \pm 0.02)\cdot 10^{-5}\) & \(2\cdot10^{-7}\) \\
+\bottomrule
+\end{tabular}
+\caption{Final values of linear expansion coefficients with uncertainties (rounded).}
+\end{table}
